@@ -64,23 +64,13 @@ End If
 Next i
 
 'Assign values for percent and value change, as well as formatting changes
-
 For j = 2 To LastRowToo
 
 BOYValue = ws.Cells(2, 3).Value
 
-If ((ws.Cells(j + 1, 1).Value <> ws.Cells(j, 1).Value) And (ws.Cells(j + 1, 3) <> 0)) Then
+If ws.Cells(j + 1, 1).Value <> ws.Cells(j, 1).Value Then
     EOYValue = ws.Cells(j, 6).Value
     PercentChange = ((EOYValue - BOYValue) / BOYValue)
-    YearlyChange = (EOYValue - BOYValue)
-    ws.Range("J" & SummaryTableRowToo).Value = YearlyChange
-    ws.Range("K" & SummaryTableRowToo).Value = PercentChange
-    SummaryTableRowToo = SummaryTableRowToo + 1
-    BOYValue = ws.Cells(j + 1, 3)
-    EOYValue = 0
-ElseIf ((ws.Cells(j + 1, 1).Value <> ws.Cells(j, 1).Value) And (ws.Cells(j + 1, 3) = 0)) Then
-    EOYValue = ws.Cells(j, 6).Value
-    PercentChange = 0
     YearlyChange = (EOYValue - BOYValue)
     ws.Range("J" & SummaryTableRowToo).Value = YearlyChange
     ws.Range("K" & SummaryTableRowToo).Value = PercentChange
@@ -124,7 +114,7 @@ For l = 2 To LastRowTres
 
 If ws.Cells(l, 10).Value < 0 Then
     ws.Cells(l, 10).Interior.ColorIndex = 3
-ElseIf Cells(l, 10).Value >= 0 Then
+ElseIf ws.Cells(l, 10).Value >= 0 Then
     ws.Cells(l, 10).Interior.ColorIndex = 4
 End If
 
@@ -134,12 +124,6 @@ Next l
 Next ws
 
 End Sub
-
-
-
-
-
-
 
 
 
